@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Middleware\AllwaysAcceptJson;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,8 +15,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+
+        $middleware->prependToGroup('api', AllwaysAcceptJson::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->renderable(function(NotFoundHttpException $e, Request $request) {
+            if ($request->wantsJson()){
+                return response()->json(['message' => 'Not found'], 404);
+            }
+        });
     })->create();

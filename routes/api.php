@@ -11,3 +11,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('categories/{category}', [CategoryController::class, 'show']);
+Route::get('list/categories', [CategoryController::class, 'list'] );

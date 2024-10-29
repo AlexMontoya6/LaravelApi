@@ -15,4 +15,4 @@ Route::get('list/categories', [CategoryController::class, 'list'] );
 Route::post('categories', [CategoryController::class, 'store']);
 Route::get('products', [ProductController::class, 'index']);
 Route::put('categories/{category}', [CategoryController::class, 'update']);
-
+Route::delete('categories/{category}', [CategoryController::class, 'delete']);

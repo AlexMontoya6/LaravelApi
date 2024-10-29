@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -11,8 +12,25 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->get();
-        
+        $products = Product::with('category')->paginate(9);
+
         return ProductResource::collection($products);
+    }
+
+    public function show(Product $product)
+    {
+        return new CategoryResource($product);
+    }
+
+    public function store(Request $request)
+    {
+        $product = Product::create($request->all());
+
+        return new CategoryResource($product);
+    }
+
+    public function list()
+    {
+        return CategoryResource::collection(Product::all());
     }
 }

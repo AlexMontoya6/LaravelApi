@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return response(null, Response::HTTP_NO_CONTENT);
+        return response()->noContent();
 
     }
 }

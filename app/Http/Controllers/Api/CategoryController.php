@@ -14,11 +14,15 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return CategoryResource::collection(Category::all());
+        abort_if(!auth()->user()->tokenCan('categories-list'), 403);
+
+        return CategoryResource::class::collection(Category::all());
     }
 
     public function show(Category $category)
     {
+        abort_if(!auth()->user()->tokenCan('categories-show'), 403);
+
         return new CategoryResource($category);
     }
 

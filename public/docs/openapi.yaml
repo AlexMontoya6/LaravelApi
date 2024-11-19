@@ -7,32 +7,10 @@ servers:
   -
     url: 'http://laravelapi.test'
 paths:
-  /api/user:
-    get:
-      summary: ''
-      operationId: getApiUser
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
   /api/list/categories:
     get:
-      summary: ''
-      operationId: getApiListCategories
+      summary: 'Get all categories'
+      operationId: getAllCategories
       description: ''
       parameters: []
       responses:
@@ -154,12 +132,11 @@ paths:
                           type: string
                           example: 'update category from api'
       tags:
-        - Endpoints
-      security: []
+        - Categories
   /api/categories:
     get:
-      summary: ''
-      operationId: getApiCategories
+      summary: 'Get all categories'
+      operationId: getAllCategories
       description: ''
       parameters: []
       responses:
@@ -176,16 +153,15 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Endpoints
-      security: []
+        - Categories
     post:
-      summary: ''
-      operationId: postApiCategories
+      summary: 'Create a category'
+      operationId: createACategory
       description: ''
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
+        - Categories
       requestBody:
         required: true
         content:
@@ -196,16 +172,15 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: sit
+                  example: facere
                   nullable: false
               required:
                 - name
-      security: []
   '/api/categories/{id}':
     get:
-      summary: ''
-      operationId: getApiCategoriesId
-      description: ''
+      summary: 'Show category'
+      operationId: showCategory
+      description: 'Get a category by ID'
       parameters: []
       responses:
         401:
@@ -221,16 +196,15 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Endpoints
-      security: []
+        - Categories
     put:
-      summary: ''
-      operationId: putApiCategoriesId
+      summary: 'Update a category'
+      operationId: updateACategory
       description: ''
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
+        - Categories
       requestBody:
         required: true
         content:
@@ -241,20 +215,18 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: ut
+                  example: similique
                   nullable: false
               required:
                 - name
-      security: []
     delete:
-      summary: ''
-      operationId: deleteApiCategoriesId
+      summary: 'Delete a category'
+      operationId: deleteACategory
       description: ''
       parameters: []
       responses: {  }
       tags:
-        - Endpoints
-      security: []
+        - Categories
     parameters:
       -
         in: path
@@ -264,6 +236,27 @@ paths:
         required: true
         schema:
           type: integer
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
   /api/products:
     get:
       summary: ''
@@ -284,9 +277,23 @@ paths:
                     type: string
                     example: Unauthenticated.
       tags:
-        - Endpoints
-      security: []
+        - Products
 tags:
+  -
+    name: Categories
+    description: 'Manage categories'
   -
     name: Endpoints
     description: ''
+  -
+    name: Products
+    description: "\n Managing products"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

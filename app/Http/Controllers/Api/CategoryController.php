@@ -9,11 +9,10 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Knuckles\Scribe\Attributes\Endpoint;
+use Knuckles\Scribe\Attributes\Group;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * @group Categories
- */
+#[Group('Categories', description: 'Manage categories')]
 class CategoryController extends Controller
 {
     /**

@@ -1,0 +1,292 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://laravelapi.test'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/list/categories:
+    get:
+      summary: ''
+      operationId: getApiListCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      name: 'update category from api'
+                    -
+                      id: 2
+                      name: 'sed id culpa'
+                    -
+                      id: 3
+                      name: 'quia quia nihil'
+                    -
+                      id: 4
+                      name: 'omnis sed illum'
+                    -
+                      id: 5
+                      name: 'quia explicabo hic'
+                    -
+                      id: 6
+                      name: 'inventore est velit'
+                    -
+                      id: 7
+                      name: 'laboriosam voluptas animi'
+                    -
+                      id: 8
+                      name: 'in rem qui'
+                    -
+                      id: 9
+                      name: 'repellat amet possimus'
+                    -
+                      id: 10
+                      name: 'dolorum quis perferendis'
+                    -
+                      id: 11
+                      name: 'New category from API'
+                    -
+                      id: 12
+                      name: 'New category from API'
+                    -
+                      id: 13
+                      name: 'New category from API'
+                    -
+                      id: 15
+                      name: 'Categoria con fichero 3'
+                    -
+                      id: 16
+                      name: 'Categoria con fichero 1'
+                    -
+                      id: 17
+                      name: 'Categoria con fichero 1'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'update category from api'
+                      -
+                        id: 2
+                        name: 'sed id culpa'
+                      -
+                        id: 3
+                        name: 'quia quia nihil'
+                      -
+                        id: 4
+                        name: 'omnis sed illum'
+                      -
+                        id: 5
+                        name: 'quia explicabo hic'
+                      -
+                        id: 6
+                        name: 'inventore est velit'
+                      -
+                        id: 7
+                        name: 'laboriosam voluptas animi'
+                      -
+                        id: 8
+                        name: 'in rem qui'
+                      -
+                        id: 9
+                        name: 'repellat amet possimus'
+                      -
+                        id: 10
+                        name: 'dolorum quis perferendis'
+                      -
+                        id: 11
+                        name: 'New category from API'
+                      -
+                        id: 12
+                        name: 'New category from API'
+                      -
+                        id: 13
+                        name: 'New category from API'
+                      -
+                        id: 15
+                        name: 'Categoria con fichero 3'
+                      -
+                        id: 16
+                        name: 'Categoria con fichero 1'
+                      -
+                        id: 17
+                        name: 'Categoria con fichero 1'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'update category from api'
+      tags:
+        - Endpoints
+      security: []
+  /api/categories:
+    get:
+      summary: ''
+      operationId: getApiCategories
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiCategories
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: sit
+                  nullable: false
+              required:
+                - name
+      security: []
+  '/api/categories/{id}':
+    get:
+      summary: ''
+      operationId: getApiCategoriesId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: ut
+                  nullable: false
+              required:
+                - name
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/products:
+    get:
+      summary: ''
+      operationId: getApiProducts
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

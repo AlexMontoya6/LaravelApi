@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\V1\CategoryController;
-use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V2\CategoryController;
+use App\Http\Controllers\Api\V2\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,5 +13,6 @@ Route::get('list/categories', [categoryController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
-    Route::get('products', [ProductController::class, 'index']);
+    Route::get('products', [ProductController::class, 'index'])
+        ->middleware('throttle:products');
 });

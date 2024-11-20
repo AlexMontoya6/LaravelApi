@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V2;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
@@ -15,10 +15,24 @@ use Symfony\Component\HttpFoundation\Response;
 #[Group('Categories', description: 'Manage categories')]
 class CategoryController extends Controller
 {
+
     /**
-     * Display a listing of the categories.
+     * @OA\Get(
+     *     path="/api/categories",
+     *     summary="Get all categories",
+     *     description="Retrieve a list of all categories.",
+     *     operationId="getCategories",
+     *     tags={"Categories"},
+     *     security={{"BearerAuth": {}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CategoryResource"))
+     *     ),
+     *     @OA\Response(response=403, description="Forbidden")
+     * )
      */
-    #[Endpoint('Get all categories')]
+
     public function index()
     {
         abort_if(!auth()->user()->tokenCan('categories-list'), 403);
@@ -87,4 +101,6 @@ class CategoryController extends Controller
         return response()->noContent();
     }
 }
+
+
 

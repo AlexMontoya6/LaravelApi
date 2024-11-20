@@ -8,6 +8,7 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Knuckles\Scribe\Attributes\Endpoint;
 use Knuckles\Scribe\Attributes\Group;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,12 +34,14 @@ class CategoryController extends Controller
      * )
      */
 
-    public function index()
-    {
-        abort_if(!auth()->user()->tokenCan('categories-list'), 403);
+     public function index()
+     {
+         abort_if(!auth()->user()->tokenCan('categories-list'), 403);
 
-        return CategoryResource::collection(Category::all());
-    }
+         return CategoryResource::class::collection(Cache::remember('categories', 60*60*24, function () {
+             return Category::all();
+         }));
+     }
 
     /**
      * Display a category.
